@@ -1,0 +1,75 @@
+<div style="width: 70%; display: block; direction: rtl; margin-left: 15%;">
+    <p style="text-align: center; font-size: x-large; font-weight: bold; margin-bottom: 2rem; margin-top: 2rem;">פרטי לקוח</p>
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div style="display: inline-grid; width: 45%;" class="form-group">
+            <label for="nameFull">שם</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="nameFull" class="form-control"
+                    [(ngModel)]="customer.nameFull" #nameFull="ngModel" [disabled]="isShow" required />
+                <mat-error *ngIf="f.submitted && !nameFull.valid" style="text-align: right;">שם הלקוח הינו
+                    חובה</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="display: inline-grid; width: 45%; margin-right: 4rem;" class="form-group">
+            <label for="customerNumber">מספר ח.פ.</label>
+            <mat-form-field>
+                <input matInput pattern="[0-9]+" maxlength="9" minlength="9" style="direction: rtl; text-align: right;"
+                    type="text" name="customerNumber" class="form-control" [(ngModel)]="customer.customerNumber"
+                    #customerNumber="ngModel" [disabled]="isShow" required />
+                <mat-error *ngIf="f.submitted && !customerNumber.valid" style="text-align: right;">מספר ח.פ.
+                    חייב להכיל 9 ספרות בלבד
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-grid; width: 45%;" class="form-group">
+            <label for="city">עיר</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="city" class="form-control"
+                    [(ngModel)]="customer.city" #city="ngModel" [disabled]="isShow" required />
+                <mat-error *ngIf="f.submitted && !city.valid" style="text-align: right;">העיר הינה
+                    חובה</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-grid; width: 45%; margin-right: 4rem;" class="form-group">
+            <label for="street">רחוב</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="street"
+                    class="form-control" [(ngModel)]="customer.street" #street="ngModel" [disabled]="isShow" required />
+                <mat-error *ngIf="f.submitted && !street.valid" style="text-align: right;">הרחוב הינו
+                    חובה</mat-error>
+            </mat-form-field>
+        </div>
+        <p *ngIf="customer.contacts.length">פרטי אנשי קשר</p>
+        <div *ngFor="let contact of customer.contacts">
+            <div style="display: inline-grid; width: 30%;" class="form-group">
+                <label for="contactName">שם</label>
+                <mat-form-field>
+                    <input matInput style="direction: rtl; text-align: right;" type="text" name="contactName"
+                        class="form-control" [(ngModel)]="contact.fullName" #contactName="ngModel" [disabled]="isShow"
+                        required />
+                    <mat-error *ngIf="f.submitted && !contactName.valid" style="text-align: right;">שם איש הקשר הינו
+                        חובה</mat-error>
+                </mat-form-field>
+            </div>
+            <div style="display: inline-grid; width: 30%; margin-right: 2rem;" class="form-group">
+                <label for="contactPhone">מספר טלפון</label>
+                <mat-form-field>
+                    <input matInput style="direction: rtl; text-align: right;" type="text" name="contactPhone"
+                        class="form-control" [(ngModel)]="contact.officeNumber" #contactPhone="ngModel"
+                        [disabled]="isShow" />
+                </mat-form-field>
+            </div>
+            <div style="display: inline-grid; width: 30%; margin-right: 2rem;" class="form-group">
+                <label for="contactEmail">מייל</label>
+                <mat-form-field>
+                    <input matInput style="direction: rtl; text-align: right;" type="text" name="contactEmail"
+                        class="form-control" [(ngModel)]="contact.email" #contactEmail="ngModel" [disabled]="isShow" />
+                </mat-form-field>
+            </div> 
+        </div>
+
+        <button *ngIf="!isShow" style="float: left; left: 4%; width: 10%;" 
+        mat-raised-button color="primary" type="submit">שמור</button>
+    </form>
+</div>

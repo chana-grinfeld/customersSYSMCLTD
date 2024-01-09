@@ -1,0 +1,30 @@
+<div style="width: 70%; display: block; direction: rtl; margin-left: 15%; margin-top: 2rem;">
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <p style="text-align: center; font-size: x-large; font-weight: bold; margin-bottom: 1rem;">הוספת איש קשר</p>
+        <div style="display: grid; margin-right: 30%; width: 40%; margin-bottom: 1rem;" class="form-group">
+            <label for="contactName" style="margin-bottom: 1rem;">שם</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="contactName"
+                    class="form-control" [(ngModel)]="contact.fullName" #contactName="ngModel" required />
+                <mat-error *ngIf="f.submitted && !contactName.valid" style="text-align: right;">שם איש הקשר הינו
+                    חובה</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: grid; margin-right: 30%; width: 40%; margin-bottom: 1rem;" class="form-group">
+            <label for="contactPhone" style="margin-bottom: 1rem;">מספר טלפון</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="contactPhone"
+                    class="form-control" [(ngModel)]="contact.officeNumber" #contactPhone="ngModel" />
+            </mat-form-field>
+        </div>
+        <div style="display: grid; margin-right: 30%; width: 40%; margin-bottom: 1rem;" class="form-group">
+            <label for="contactEmail"  style="margin-bottom: 1rem;">מייל</label>
+            <mat-form-field>
+                <input matInput style="direction: rtl; text-align: right;" type="text" name="contactEmail"
+                    class="form-control" [(ngModel)]="contact.email" #contactEmail="ngModel" />
+            </mat-form-field>
+        </div>
+        <button style="float: left; margin-left: 30%; width: 10%; margin-top: 1rem;" mat-raised-button color="primary"
+            type="submit">הוסף</button>
+    </form>
+</div>
